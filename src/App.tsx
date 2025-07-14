@@ -316,7 +316,9 @@ const LocationSection = () => {
             </div>
             <div>
               <p className="font-semibold text-gray-700 mb-1">주차</p>
-              <p className="text-gray-600">건물 내 주차장 2시간 무료</p>
+              <p className="text-gray-600">지정 주차장 2시간 무료</p>
+              <p className="text-red-600 text-xs mt-1">※ 당일 모든 주차는 주차요원의 안내를 받아주세요</p>
+              <p className="text-red-600 text-xs mt-1">※ 주말에는 주차가 매우 혼잡하오니 대중교통 이용을 권장드립니다</p>
             </div>
           </div>
         </div>
@@ -405,7 +407,6 @@ const AccountSection = () => {
     <section className="py-20 bg-gray-50">
       <div className="max-w-md mx-auto px-8">
         <h2 className="text-3xl font-serif mb-8 text-center text-gray-800">마음 전하기</h2>
-
         <div className="bg-white rounded-2xl shadow-lg p-6">
           <p className="text-center text-gray-600 mb-6">
             참석이 어려우신 분들을 위해<br />
@@ -467,7 +468,13 @@ const AccountSection = () => {
           </div>
         </div>
       </div>
-    </section>
+      <div className="mx-1 mt-8 bg-pink-50 text-center rounded-2xl shadow-lg p-6">
+        <p className="text-sm text-gray-700">
+          <span className="font-semibold">💐 화환은 정중히 사양합니다</span><br />
+          <span className="text-xs text-gray-600 mt-1">마음만 감사히 받겠습니다</span>
+        </p>
+      </div>
+    </section >
   );
 };
 
@@ -513,8 +520,9 @@ export default function WeddingInvitation() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <style>{`
+    <div className="min-h-screen bg-white flex justify-center">
+      <div className="w-full max-w-lg bg-white shadow-xl ">
+        <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -524,50 +532,51 @@ export default function WeddingInvitation() {
         }
       `}</style>
 
-      {/* 음악 재생 안내 팝업 */}
-      {showMusicPrompt && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
-            <div className="text-center">
-              <Music className="w-12 h-12 mx-auto mb-4 text-pink-500" />
-              <h3 className="text-lg font-semibold mb-2">배경음악을 재생하시겠습니까?</h3>
-              <p className="text-sm text-gray-600 mb-6">
-                청첩장과 함께 아름다운 음악을 들으실 수 있습니다
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    setShowMusicPrompt(false);
-                    // ref를 통한 음악 재생
-                    if (musicControllerRef.current) {
-                      musicControllerRef.current.play();
-                    }
-                  }}
-                  className="flex-1 bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 transition-colors"
-                >
-                  재생
-                </button>
-                <button
-                  onClick={() => setShowMusicPrompt(false)}
-                  className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors"
-                >
-                  나중에
-                </button>
+        {/* 음악 재생 안내 팝업 */}
+        {showMusicPrompt && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
+              <div className="text-center">
+                <Music className="w-12 h-12 mx-auto mb-4 text-pink-500" />
+                <h3 className="text-lg font-semibold mb-2">배경음악을 재생하시겠습니까?</h3>
+                <p className="text-sm text-gray-600 mb-6">
+                  청첩장과 함께 아름다운 음악을 들으실 수 있습니다
+                </p>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => {
+                      setShowMusicPrompt(false);
+                      // ref를 통한 음악 재생
+                      if (musicControllerRef.current) {
+                        musicControllerRef.current.play();
+                      }
+                    }}
+                    className="flex-1 bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 transition-colors"
+                  >
+                    재생
+                  </button>
+                  <button
+                    onClick={() => setShowMusicPrompt(false)}
+                    className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors"
+                  >
+                    나중에
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <MusicController ref={musicControllerRef} />
-      <HeroSection />
-      <GreetingSection />
-      <GallerySection />
-      <CalendarSection />
-      <LocationSection />
-      <ContactSection />
-      <AccountSection />
-      <FooterSection />
+        <MusicController ref={musicControllerRef} />
+        <HeroSection />
+        <GreetingSection />
+        <GallerySection />
+        <CalendarSection />
+        <LocationSection />
+        <ContactSection />
+        <AccountSection />
+        <FooterSection />
+      </div>
     </div>
   );
 }
