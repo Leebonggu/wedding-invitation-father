@@ -270,9 +270,39 @@ const LocationSection = () => {
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <h3 className="text-xl font-semibold mb-2 text-gray-800">웨딩시그니처</h3>
           <p className="text-gray-600 mb-4">서울시 마포구 양화로 87 (서교동378-7)<br />웨딩시그니처 4층 아너스홀</p>
-
-          <div className="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-            <MapPin className="w-12 h-12 text-gray-400" />
+          <div className="aspect-video bg-gray-200 rounded-lg mb-4 relative overflow-hidden">
+            {/* 카카오맵 정적 이미지 */}
+            <a
+              href="https://map.kakao.com/?urlX=481734.9999999991&urlY=1125855&itemId=803348028&q=웨딩시그니처&srcid=803348028&map_type=TYPE_MAP&from=roughmap"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full h-full"
+            >
+              <img
+                className="w-full h-full object-cover"
+                src="https://t1.daumcdn.net/roughmap/imgmap/563c4e06f503c5e78fa4a0720f7941a38f0a7e51baa457c1ab2d3ad9cb9ec134"
+                alt="웨딩시그니처 위치"
+              />
+            </a>
+            {/* 오버레이 버튼 */}
+            <div className="absolute bottom-2 right-2 flex gap-2">
+              <a
+                href="https://map.kakao.com/?from=roughmap&srcid=803348028&confirmid=803348028&q=웨딩시그니처&rv=on"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white px-3 py-1 rounded text-xs shadow-md hover:bg-gray-100"
+              >
+                로드뷰
+              </a>
+              <a
+                href="https://map.kakao.com/?from=roughmap&eName=웨딩시그니처&eX=481734.9999999991&eY=1125855"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white px-3 py-1 rounded text-xs shadow-md hover:bg-gray-100"
+              >
+                길찾기
+              </a>
+            </div>
           </div>
 
           <div className="space-y-3 text-sm">
@@ -290,14 +320,13 @@ const LocationSection = () => {
             </div>
           </div>
         </div>
-
         <div className="flex gap-4">
-          <button className="flex-1 bg-green-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-600 transition-colors">
+          <a type="button" className="flex-1 bg-green-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-600 transition-colors flex justify-center items-center" href='https://kko.kakao.com/UYLNMIMBsX' target="_blank" rel="noopener noreferrer">
             네이버 지도
-          </button>
-          <button className="flex-1 bg-yellow-400 text-gray-800 py-3 px-4 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+          </a>
+          <a className="flex-1 bg-yellow-400 text-gray-800 py-3 px-4 rounded-lg font-medium hover:bg-yellow-500 transition-colors flex justify-center items-center" href='https://kko.kakao.com/UYLNMIMBsX' target="_blank" rel="noopener noreferrer">
             카카오맵
-          </button>
+          </a>
         </div>
       </div>
     </section>
