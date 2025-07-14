@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
-import { Heart, MapPin, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle } from 'lucide-react';
+import { Heart, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle } from 'lucide-react';
 
 // 음악 컨트롤러 컴포넌트
-const MusicController = forwardRef((props, ref) => {
+const MusicController = forwardRef((_props: any, ref) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio] = useState(new Audio('/wedding-song.mp3')); // 여기에 음악 파일 경로 입력
 
