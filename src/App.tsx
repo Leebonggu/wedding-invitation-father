@@ -317,7 +317,7 @@ const LocationSection = () => {
             <div>
               <p className="font-semibold text-gray-700 mb-1">주차</p>
               <p className="text-gray-600">지정 주차장 2시간 무료</p>
-              <p className="text-red-600 text-xs mt-1">※ 당일 모든 주차는 주차요원의 안내를 받아주세요</p>
+              <p className="text-red-600 text-xs mt-1">※ 당일 모든 주차는 건물정문에서 안내를 받아주세요</p>
               <p className="text-red-600 text-xs mt-1">※ 주말에는 주차가 매우 혼잡하오니 대중교통 이용을 권장드립니다</p>
             </div>
           </div>
@@ -338,7 +338,7 @@ const LocationSection = () => {
 // 연락처 섹션
 const ContactSection = () => {
   const contacts = [
-    { role: '신랑', name: '이봉구', phone: '010-1234-5678' },
+    { role: '신랑', name: '이봉구', phone: '010-5031-6317' },
     { role: '신부', name: '이수정', phone: '010-8765-4321' },
     { role: '신랑 아버지', name: '이성화', phone: '010-1111-2222' },
     { role: '신랑 어머니', name: '김종희', phone: '010-3333-4444' },
