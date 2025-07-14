@@ -523,10 +523,17 @@ export default function WeddingInvitation() {
     <div className="min-h-screen bg-white flex justify-center">
       <div className="w-full max-w-lg bg-white shadow-xl ">
         <style>{`
+        @import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+  
+        * {
+          font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+        }
+
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
+          
         .animate-fadeIn {
           animation: fadeIn 0.8s ease-out forwards;
         }
