@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
-import { Heart, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle } from 'lucide-react';
+import { Heart, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle, ChevronRight, ChevronLeft } from 'lucide-react';
 
 // 음악 컨트롤러 컴포넌트
 const MusicController = forwardRef((_props: any, ref) => {
@@ -78,7 +78,7 @@ const HeroSection = () => {
           <span className="block">이수정</span>
         </h1>
         <p className="text-gray-600 mb-6">2025년 12월 13일 토요일 오후 12시 40분</p>
-        <p className="text-gray-600">웨딩시그너치 4층 아너스홀</p>
+        <p className="text-gray-600">웨딩시그너처 4층 아너스홀</p>
         <ChevronDown className="w-6 h-6 mx-auto mt-12 text-gray-400 animate-bounce" />
       </div>
     </section>
@@ -116,10 +116,11 @@ const GreetingSection = () => {
     </section>
   );
 };
-
 // 갤러리 섹션
 const GallerySection = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const images = [
     "https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop",
@@ -133,6 +134,62 @@ const GallerySection = () => {
     "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&h=400&fit=crop",
   ];
 
+  // 터치 시작
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  // 터치 이동
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  // 터치 종료
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && selectedImageIndex !== null) {
+      goToNext();
+    }
+    if (isRightSwipe && selectedImageIndex !== null) {
+      goToPrevious();
+    }
+  };
+
+  // 이전 이미지
+  const goToPrevious = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex(selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1);
+  };
+
+  // 다음 이미지
+  const goToNext = () => {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex(selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1);
+  };
+
+  // 키보드 네비게이션
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImageIndex === null) return;
+
+      if (e.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        goToNext();
+      } else if (e.key === 'Escape') {
+        setSelectedImageIndex(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImageIndex]);
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-md mx-auto px-8">
@@ -142,7 +199,7 @@ const GallerySection = () => {
             <div
               key={idx}
               className="aspect-square overflow-hidden rounded-lg cursor-pointer transform transition-transform hover:scale-105"
-              onClick={() => setSelectedImage(img)}
+              onClick={() => setSelectedImageIndex(idx)}
             >
               <img
                 src={img}
@@ -154,22 +211,70 @@ const GallerySection = () => {
         </div>
       </div>
 
-      {selectedImage && (
+      {selectedImageIndex !== null && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          onClick={() => setSelectedImageIndex(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white"
-            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white z-10"
+            onClick={() => setSelectedImageIndex(null)}
           >
             <X className="w-8 h-8" />
           </button>
-          <img
-            src={selectedImage}
-            alt="Selected"
-            className="max-w-full max-h-full rounded-lg"
-          />
+
+          {/* 이전 버튼 */}
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 z-10"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+
+          {/* 다음 버튼 */}
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 z-10"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+
+          {/* 이미지 컨테이너 */}
+          <div
+            className="relative max-w-full max-h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <img
+              src={images[selectedImageIndex]}
+              alt={`Selected ${selectedImageIndex + 1}`}
+              className="max-w-full max-h-[90vh] rounded-lg"
+            />
+
+            {/* 인디케이터 */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {images.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-2 h-2 rounded-full transition-colors ${idx === selectedImageIndex ? 'bg-white' : 'bg-white bg-opacity-50'
+                    }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* 이미지 번호 */}
+          <div className="absolute top-4 left-4 text-white bg-black bg-opacity-50 px-3 py-1 rounded-full text-sm">
+            {selectedImageIndex + 1} / {images.length}
+          </div>
         </div>
       )}
     </section>
@@ -308,17 +413,33 @@ const LocationSection = () => {
           <div className="space-y-3 text-sm">
             <div>
               <p className="font-semibold text-gray-700 mb-1">지하철</p>
-              <p className="text-gray-600">2호선 강남역 3번 출구 도보 5분</p>
+              <div className="space-y-1">
+                {/* 2호선, 6호선 - 합정역 */}
+                <div className="flex items-center gap-1 flex-wrap">
+                  <span className="bg-green-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">2호선</span>
+                  <span className="bg-amber-900 text-white px-2 py-0.5 rounded-full text-xs font-bold">6호선</span>
+                  <span className="text-gray-700 text-sm">합정역 2번 출구 도보 4분</span>
+                </div>
+                {/* 공항철도/경의선 - 홍대입구 */}
+                <div className="flex items-center gap-1 flex-wrap">
+                  <span className="bg-blue-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">공항철도</span>
+                  <span className="bg-cyan-400 text-white px-2 py-0.5 rounded-full text-xs font-bold">경의선</span>
+                  <span className="bg-green-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">2호선</span>
+                  <span className="text-gray-700 text-sm">홍대입구역 1번 출구 도보 11분</span>
+                </div>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-gray-700 mb-1">버스</p>
-              <p className="text-gray-600">간선 146, 341, 360<br />지선 3412, 4318</p>
-            </div>
+
             <div>
               <p className="font-semibold text-gray-700 mb-1">주차</p>
-              <p className="text-gray-600">지정 주차장 2시간 무료</p>
-              <p className="text-red-600 text-xs mt-1">※ 당일 모든 주차는 건물정문에서 안내를 받아주세요</p>
-              <p className="text-red-600 text-xs mt-1">※ 주말에는 주차가 매우 혼잡하오니 대중교통 이용을 권장드립니다</p>
+              <p className="text-gray-600 text-sm">지정 주차장 2시간 무료입니다</p>
+              <p className="text-gray-600 text-xs">1주차장: 본 건물</p>
+              <p className="text-gray-600 text-xs">2주차장: H스퀘어</p>
+              <p className="text-gray-600 text-xs">3주차장: 서교빌딩 주차장</p>
+              <br />
+              <p className="text-red-600 text-xs">※ 주차가 매우 혼잡하오니 대중교통 이용을 권장드립니다</p>
+              <p className="text-red-600 text-xs">※ 건물정문에서 안내를 받아주세요</p>
+
             </div>
           </div>
         </div>
@@ -331,7 +452,7 @@ const LocationSection = () => {
           </a>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
@@ -468,13 +589,52 @@ const AccountSection = () => {
           </div>
         </div>
       </div>
-      <div className="mx-1 mt-8 bg-pink-50 text-center rounded-2xl shadow-lg p-6">
-        <p className="text-sm text-gray-700">
-          <span className="font-semibold">💐 화환은 정중히 사양합니다</span><br />
-          <span className="text-xs text-gray-600 mt-1">마음만 감사히 받겠습니다</span>
-        </p>
-      </div>
     </section >
+  );
+};
+
+// 예식 안내사항 섹션
+const NoticeSection = () => {
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-md mx-auto px-8">
+        <h2 className="text-3xl font-serif mb-8 text-center text-gray-800">안내사항</h2>
+
+        <div className="space-y-4">
+          {/* 주차 안내 */}
+          <div className="bg-gray-50 rounded-2xl p-6 flex gap-4">
+            <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span className="text-3xl">🅿️</span>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">주차안내</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                예식 당일 주차 혼잡이 예상됩니다.<br />
+                가급적 대중교통 이용을 부탁 드립니다.
+              </p>
+              <p className="text-gray-500 text-xs mt-2">
+                · 지정 주차장 2시간 무료<br />
+                · 건물 정문에서 안내 받으세요
+              </p>
+            </div>
+          </div>
+
+          {/* 화환 안내 */}
+          <div className="bg-pink-50 rounded-2xl p-6 flex gap-4">
+            <div className="w-16 h-16 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span className="text-3xl">💐</span>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-lg mb-2 text-gray-800">화환안내</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                화환은 정중히 사양합니다.<br />
+                축하해 주시는 마음만 감사히 받겠습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -582,6 +742,7 @@ export default function WeddingInvitation() {
         <LocationSection />
         <ContactSection />
         <AccountSection />
+        <NoticeSection />
         <FooterSection />
       </div>
     </div>
