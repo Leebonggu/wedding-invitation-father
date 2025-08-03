@@ -264,6 +264,29 @@ const GallerySection = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedImageIndex]);
 
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      const handleTouchMove = (e: TouchEvent) => {
+        if (e.touches && e.touches.length > 1) {
+          e.preventDefault();
+        }
+      };
+      const handleTouchStart = (e: TouchEvent) => {
+        if (e.touches && e.touches.length > 1) {
+          e.preventDefault();
+        }
+      };
+
+      document.body.addEventListener('touchmove', handleTouchMove, { passive: false });
+      document.body.addEventListener('touchstart', handleTouchStart, { passive: false });
+
+      return () => {
+        document.body.removeEventListener('touchmove', handleTouchMove);
+        document.body.removeEventListener('touchstart', handleTouchStart);
+      };
+    }
+  }, [selectedImageIndex]);
+
   const goToPrevious = () => {
     if (selectedImageIndex === null) return;
     setSelectedImageIndex(selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1);
@@ -323,6 +346,14 @@ const GallerySection = () => {
                 className={`w-full h-full object-cover transition-opacity duration-300 ${loadedImages.has(idx) ? 'opacity-100' : 'opacity-0'
                   }`}
                 loading="lazy"
+                draggable={false}
+                style={{
+                  touchAction: 'none',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                }}
+                onClick={e => e.stopPropagation()}
                 onLoad={() => setLoadedImages(prev => new Set(prev).add(idx))}
                 onError={() => setImageLoadErrors(prev => new Set(prev).add(idx))}
               />
