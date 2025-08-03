@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { Heart, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle, ChevronRight, ChevronLeft, MapPin, Clock, Car, SkipBack, SkipForward, Pause, Play } from 'lucide-react';
 import { LightboxPortal } from './shared/LightboxPortal';
+import { CSSFireworks } from './shared/CSSFireworks';
+
 
 
 // 음악 컨트롤러 컴포넌트
@@ -91,6 +93,7 @@ const MusicController = forwardRef((_props: any, ref) => {
     </button>
   );
 });
+
 const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -209,9 +212,43 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
 
 // 인사말 섹션 - 색상 테마 적용
 const GreetingSection = () => {
+  const [showFireworks, setShowFireworks] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTriggered = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTriggered.current) {
+            hasTriggered.current = true;
+            setShowFireworks(true);
+
+            setTimeout(() => {
+              setShowFireworks(false);
+            }, 3000);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-24 px-8 bg-white">
-      <div className="max-w-md mx-auto text-center">
+    <section ref={sectionRef} className="py-24 px-8 bg-white relative overflow-hidden">
+      {showFireworks && <CSSFireworks />}
+
+      <div className="max-w-md mx-auto text-center relative z-10">
         <h2 className="text-2xl font-light tracking-wider mb-12 text-gray-800">초대합니다</h2>
         <div className="text-gray-600 leading-loose space-y-8 font-light">
           <p>
