@@ -789,7 +789,8 @@ const NoticeSection = () => {
             <div className="flex-1">
               <h3 className="font-medium text-gray-800 mb-2">식사안내</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                연회장은 예식 30분전에 오픈되고 <br /> 사용시간은 총 2시간 입니다.
+                식사는 4층 연회장에서 뷔페로 진행되며<br />
+                이용시간은 12:10 ~ 14:10 입니다.
               </p>
             </div>
           </div>
