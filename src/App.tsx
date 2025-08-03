@@ -27,7 +27,7 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
     <section className="relative min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-white to-rose-50">
       {/* 상단 타이틀 - 여백 증가 */}
       <div className="relative text-center pt-8 pb-2">
-        <h2 className="text-rose-400 text-lg sm:text-base font-light tracking-[0.2em] sm:tracking-[0.3em] opacity-80">
+        <h2 className="text-rose-400 text-xl font-light tracking-[0.2em] sm:tracking-[0.3em] opacity-80">
           Wedding Player
         </h2>
       </div>
