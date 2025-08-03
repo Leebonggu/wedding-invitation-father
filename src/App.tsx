@@ -115,13 +115,16 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
   return (
     <section className="relative h-screen flex flex-col overflow-hidden bg-gradient-to-br from-rose-50 via-white to-rose-50">
       {/* 상단 타이틀 */}
-      <div className="absolute top-12 left-0 right-0 text-center z-20">
-        <h2 className="text-rose-400 text-lg font-light tracking-[0.3em] opacity-80">Wedding Player</h2>
+
+      <div className="absolute top-safe left-0 right-0 text-center z-20 pt-4">
+        <h2 className="text-rose-400 text-base sm:text-lg font-light tracking-[0.2em] sm:tracking-[0.3em] opacity-80">
+          Wedding Player
+        </h2>
       </div>
 
       {/* 중앙 콘텐츠 */}
-      <div className="flex-1 flex items-center justify-center px-8">
-        <div className={`relative w-full max-w-sm transition-all duration-1500 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-8">
+        <div className={`relative w-full max-w-[350px] sm:max-w-sm mt-12 sm:mt-0 transition-all duration-1500 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           {/* 메인 이미지 카드 */}
           <div className="relative bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
             <div className="aspect-[3/4] relative">
@@ -130,6 +133,7 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
                 alt="Wedding"
                 className="w-full h-full object-cover object-[60%] scale-110"
                 onLoad={() => setImageLoaded(true)}
+                loading="eager" // 히어로 이미지는 즉시 로드
               />
               {/* 그라데이션 오버레이 */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
