@@ -19,7 +19,7 @@ const MusicController = forwardRef((_props: any, ref) => {
       newAudio.play().then(() => {
         setIsPlaying(true);
         setAudio(newAudio);
-      }).catch(e => {
+      }).catch(() => {
         alert('음악 재생이 차단되었습니다.');
       });
       newAudio.addEventListener('loadedmetadata', () => {
@@ -464,8 +464,8 @@ const GallerySection = () => {
                 <div
                   key={idx}
                   className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === selectedImageIndex
-                      ? 'bg-white w-8'
-                      : 'bg-white/40 hover:bg-white/60'
+                    ? 'bg-white w-8'
+                    : 'bg-white/40 hover:bg-white/60'
                     }`}
                 />
               ))}
