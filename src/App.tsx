@@ -1,105 +1,17 @@
-import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
-import { Heart, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle, ChevronRight, ChevronLeft, MapPin, Clock, Car, SkipBack, SkipForward, Pause, Play } from 'lucide-react';
+import { useState, useEffect, useRef, } from 'react';
+import { Heart, Phone, ChevronDown, X, Music, ChevronRight, ChevronLeft, MapPin, Clock, Car, SkipBack, SkipForward, Pause, Play } from 'lucide-react';
 import { LightboxPortal } from './shared/LightboxPortal';
 import { CSSFireworks } from './shared/CSSFireworks';
 import { SectionTitle } from './shared/SectionTitle';
+import { MusicController } from './shared/MusicController';
 
 
-// 음악 컨트롤러 컴포넌트
-const MusicController = forwardRef((_props: any, ref) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-
-  const play = () => {
-    if (!audio) {
-      const newAudio = new Audio('/wedding-song.mp3');
-      newAudio.loop = true;
-      newAudio.volume = 0.3;
-      newAudio.play().then(() => {
-        setIsPlaying(true);
-        setAudio(newAudio);
-      }).catch(() => {
-        alert('음악 재생이 차단되었습니다.');
-      });
-      newAudio.addEventListener('loadedmetadata', () => {
-        setDuration(newAudio.duration);
-      });
-
-      newAudio.addEventListener('timeupdate', () => {
-        setCurrentTime(newAudio.currentTime);
-        const prog = (newAudio.currentTime / newAudio.duration) * 100;
-        setProgress(prog);
-      });
-    } else {
-      audio.play();
-      setIsPlaying(true);
-    }
-  };
-
-  const pause = () => {
-    if (audio) {
-      audio.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  useImperativeHandle(ref, () => ({
-    play,
-    pause,
-    isPlaying,
-    toggleMusic: () => {
-      if (isPlaying) {
-        pause();
-      } else {
-        play();
-      }
-    },
-    progress,  // 추가
-    currentTime,  // 추가
-    duration  // 추가
-  }));
-
-  useEffect(() => {
-    return () => {
-      if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    };
-  }, [audio]);
-
-  const toggleMusic = () => {
-    if (isPlaying) {
-      pause();
-    } else {
-      play();
-    }
-  };
-
-  return (
-    <button
-      onClick={toggleMusic}
-      className="fixed bottom-6 right-6 z-50 bg-white/90 backdrop-blur-md shadow-lg rounded-full p-3.5 hover:shadow-xl transition-all duration-300"
-      aria-label={isPlaying ? '음악 일시정지' : '음악 재생'}
-    >
-      {isPlaying ? (
-        <PauseCircle className="w-5 h-5 text-rose-400" />
-      ) : (
-        <PlayCircle className="w-5 h-5 text-rose-400" />
-      )}
-    </button>
-  );
-});
 
 const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  // musicControllerRef의 상태 변화를 감지
   useEffect(() => {
     const checkPlayingState = setInterval(() => {
       if (musicControllerRef.current) {
@@ -644,7 +556,7 @@ const LocationSection = () => {
             href="https://naver.me/xFLuQhhM"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-600 py-3.5 rounded-xl font-medium hover:from-rose-100 hover:to-pink-100 transition-all text-center text-sm"
+            className="flex-1 border border-gray-300 text-gray-600 py-3.5 rounded-xl font-medium hover:bg-rose-50 hover:border-rose-300 hover:text-rose-600 transition-all text-center text-sm"
           >
             네이버 지도
           </a>
@@ -652,7 +564,7 @@ const LocationSection = () => {
             href="https://kko.kakao.com/UYLNMIMBsX"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-600 py-3.5 rounded-xl font-medium hover:from-rose-100 hover:to-pink-100 transition-all text-center text-sm"
+            className="flex-1 border border-gray-300 text-gray-600 py-3.5 rounded-xl font-medium hover:bg-rose-50 hover:border-rose-300 hover:text-rose-600 transition-all text-center text-sm"
           >
             카카오맵
           </a>
@@ -912,39 +824,36 @@ export default function WeddingInvitation() {
     <div className="min-h-screen bg-white">
       <div className="w-full max-w-lg mx-auto bg-white">
         <style>{`
-        @import url('//fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap');
-        @import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
-  
-        * {
-          font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-        }
-        
-        h1, h2, h3 {
-          font-family: 'Noto Serif KR', serif;
-          font-weight: 300;
-        }
-
-        /* 본문용 - 산세리프체 */
-        body {
-          font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
-          font-weight: 400;
-        }
-
-        /* 강조용 */
-        .emphasis {
-          font-family: 'GmarketSans', sans-serif;
-          font-weight: 500;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&display=swap');
           
-        .animate-fadeIn {
-          animation: fadeIn 1s ease-out forwards;
-        }
-      `}</style>
+          * {
+            font-family: 'Spoqa Han Sans Neo', 'Spoqa Han Sans JP', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          
+          /* 제목용 - 세리프체 */
+          h1, h2, h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-weight: 300;
+          }
+          
+          /* font-weight 클래스들 */
+          .font-thin { font-weight: 100; }
+          .font-light { font-weight: 300; }
+          .font-regular { font-weight: 400; }
+          .font-medium { font-weight: 500; }
+          .font-bold { font-weight: 700; }
+
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+            
+          .animate-fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+          }
+        `}</style>
 
         {showMusicPrompt && (
           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
