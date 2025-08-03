@@ -799,7 +799,8 @@ const NoticeSection = () => {
             <div className="flex-1">
               <h3 className="font-medium text-gray-800 mb-2">화환안내</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                화환은 정중히 사양합니다.<br />
+                웨딩홀 규정에 따라<br />
+                화환은 건물 1층이 놓여집니다. <br />
                 축하해 주시는 마음만 감사히 받겠습니다.
               </p>
             </div>
