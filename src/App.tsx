@@ -545,7 +545,7 @@ const LocationSection = () => {
           </div>
 
           <div className="mt-6 pt-6 border-t border-gray-100">
-            <p className="text-xs text-gray-500 text-center">
+            <p className="text-xs text-rose-400 text-center">
               예식 당일 주차장이 혼잡할 수 있으니<br />
               가급적 대중교통 이용을 권장드립니다.
             </p>
