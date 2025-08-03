@@ -266,26 +266,26 @@ const GallerySection = () => {
 
   useEffect(() => {
     if (selectedImageIndex !== null) {
-      const handleTouchMove = (e: TouchEvent) => {
+      const preventDefault = (e: TouchEvent) => {
         if (e.touches && e.touches.length > 1) {
           e.preventDefault();
         }
       };
-      const handleTouchStart = (e: TouchEvent) => {
-        if (e.touches && e.touches.length > 1) {
-          e.preventDefault();
-        }
-      };
+      // gesturestart는 iOS Safari 한정, 타입 무시
+      const gestureStart = (e: Event) => e.preventDefault();
 
-      document.body.addEventListener('touchmove', handleTouchMove, { passive: false });
-      document.body.addEventListener('touchstart', handleTouchStart, { passive: false });
+      document.body.addEventListener('touchmove', preventDefault, { passive: false });
+      document.body.addEventListener('touchstart', preventDefault, { passive: false });
+      window.addEventListener('gesturestart', gestureStart as any, { passive: false });
 
       return () => {
-        document.body.removeEventListener('touchmove', handleTouchMove);
-        document.body.removeEventListener('touchstart', handleTouchStart);
+        document.body.removeEventListener('touchmove', preventDefault);
+        document.body.removeEventListener('touchstart', preventDefault);
+        window.removeEventListener('gesturestart', gestureStart as any);
       };
     }
   }, [selectedImageIndex]);
+
 
   const goToPrevious = () => {
     if (selectedImageIndex === null) return;
@@ -346,14 +346,7 @@ const GallerySection = () => {
                 className={`w-full h-full object-cover transition-opacity duration-300 ${loadedImages.has(idx) ? 'opacity-100' : 'opacity-0'
                   }`}
                 loading="lazy"
-                draggable={false}
-                style={{
-                  touchAction: 'none',
-                  userSelect: 'none',
-                  WebkitUserSelect: 'none',
-                  WebkitTouchCallout: 'none',
-                }}
-                onClick={e => e.stopPropagation()}
+
                 onLoad={() => setLoadedImages(prev => new Set(prev).add(idx))}
                 onError={() => setImageLoadErrors(prev => new Set(prev).add(idx))}
               />
@@ -420,10 +413,16 @@ const GallerySection = () => {
             <img
               src={images[selectedImageIndex]}
               alt={`Selected ${selectedImageIndex + 1}`}
-              className={`max-w-full max-h-full object-contain select-none pointer-events-auto transition-opacity duration-300 ${loadedImages.has(selectedImageIndex) ? 'opacity-100' : 'opacity-0'
-                }`}
+              className="max-w-full max-h-full object-contain select-none pointer-events-auto transition-opacity duration-300"
               draggable={false}
-              style={{ maxWidth: '100vw', maxHeight: '100vh' }}
+              style={{
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                touchAction: 'none',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+              }}
               onClick={e => e.stopPropagation()}
             />
 
