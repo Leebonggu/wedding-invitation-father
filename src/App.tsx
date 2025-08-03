@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 're
 import { Heart, Phone, ChevronDown, X, Music, PauseCircle, PlayCircle, ChevronRight, ChevronLeft, MapPin, Clock, Car, SkipBack, SkipForward, Pause, Play } from 'lucide-react';
 import { LightboxPortal } from './shared/LightboxPortal';
 import { CSSFireworks } from './shared/CSSFireworks';
-
+import { SectionTitle } from './shared/SectionTitle';
 
 
 // 음악 컨트롤러 컴포넌트
@@ -249,7 +249,7 @@ const GreetingSection = () => {
       {showFireworks && <CSSFireworks />}
 
       <div className="max-w-md mx-auto text-center relative z-10">
-        <h2 className="text-2xl font-light tracking-wider mb-12 text-gray-800">초대합니다</h2>
+        <SectionTitle title="초대합니다" subtitle="INVITATION" className="mb-12" />
         <div className="text-gray-600 leading-loose space-y-8 font-light">
           <p>
             꽃피는 봄에 맺은 인연이<br />
@@ -264,12 +264,12 @@ const GreetingSection = () => {
         <div className="mt-16 space-y-6 text-sm text-gray-500">
           <div className="flex items-center justify-center space-x-3">
             <span>이성화 · 김종희</span>
-            <span className="text-xs">의 차남</span>
+            <span className="text-xs">의 아들</span>
             <span className="font-medium text-gray-700">봉구</span>
           </div>
           <div className="flex items-center justify-center space-x-3">
-            <span>김강준 · 유신자</span>
-            <span className="text-xs">의 차녀</span>
+            <span>이강준 · 유신자</span>
+            <span className="text-xs">의 딸</span>
             <span className="font-medium text-gray-700">수정</span>
           </div>
         </div>
@@ -392,7 +392,7 @@ const GallerySection = () => {
   return (
     <section className="py-24 bg-neutral-50">
       <div className="max-w-md mx-auto px-8">
-        <h2 className="text-2xl font-light tracking-wider text-center mb-12 text-gray-800">갤러리</h2>
+        <SectionTitle title="갤러리" subtitle="GALLERY" className="mb-12" />
         <div className="grid grid-cols-3 gap-2">
           {images.map((img, idx) => (
             <div
@@ -571,8 +571,7 @@ const LocationSection = () => {
   return (
     <section className="py-24 bg-neutral-50">
       <div className="max-w-md mx-auto px-8">
-        <h2 className="text-2xl font-light tracking-wider text-center mb-12 text-gray-800">오시는 길</h2>
-
+        <SectionTitle title="오시는 길" subtitle="LOCATION" className="mb-12" />
         <div className="bg-white rounded-2xl shadow-sm p-8">
           <div className="text-center mb-8">
             <h3 className="text-xl mb-3 text-gray-800">웨딩시그니처</h3>
@@ -677,8 +676,7 @@ const ContactSection = () => {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-md mx-auto px-8">
-        <h2 className="text-2xl font-light tracking-wider text-center mb-12 text-gray-800">연락처</h2>
-
+        <SectionTitle title="연락처" subtitle="CONTACT" className="mb-12" />
         <div className="grid grid-cols-2 gap-4">
           {contacts.map((contact, idx) => (
             <a
@@ -721,7 +719,7 @@ const AccountSection = () => {
   return (
     <section className="py-24 bg-neutral-50">
       <div className="max-w-md mx-auto px-8">
-        <h2 className="text-2xl font-light tracking-wider text-center mb-12 text-gray-800">마음 전하기</h2>
+        <SectionTitle title="마음 전하기" subtitle="ACCOUNT" className="mb-12" />
 
         <div className="bg-white rounded-2xl shadow-sm p-8">
           <p className="text-center text-gray-600 mb-8 font-light">
@@ -839,26 +837,19 @@ const NoticeSection = () => {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-md mx-auto px-8">
-        <h2 className="text-2xl font-light tracking-wider text-center mb-12 text-gray-800">안내사항</h2>
-
+        <SectionTitle title="안내사항" subtitle="NOTICE" className="mb-8 text-center" />
         <div className="space-y-4">
-          <div className="bg-gray-50 rounded-2xl p-6 flex gap-4">
-            <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span className="text-2xl">🅿️</span>
+          <div className="bg-amber-50 rounded-2xl p-6 flex gap-4">
+            <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span className="text-2xl">🍽️</span>
             </div>
             <div className="flex-1">
-              <h3 className="font-medium text-gray-800 mb-2">주차안내</h3>
+              <h3 className="font-medium text-gray-800 mb-2">식사안내</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                예식 당일 주차 혼잡이 예상됩니다.<br />
-                가급적 대중교통 이용을 부탁 드립니다.
-              </p>
-              <p className="text-gray-500 text-xs mt-2">
-                · 지정 주차장 2시간 무료<br />
-                · 건물 정문에서 안내 받으세요
+                연회장은 예식 30분전에 오픈되고 <br /> 사용시간은 총 2시간 입니다.
               </p>
             </div>
           </div>
-
           <div className="bg-rose-50 rounded-2xl p-6 flex gap-4">
             <div className="w-14 h-14 bg-rose-100 rounded-xl flex items-center justify-center flex-shrink-0">
               <span className="text-2xl">💐</span>
