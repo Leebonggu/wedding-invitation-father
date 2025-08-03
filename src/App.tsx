@@ -176,12 +176,12 @@ const GreetingSection = () => {
         <div className="mt-16 space-y-6 text-sm text-gray-500">
           <div className="flex items-center justify-center space-x-3">
             <span>이성화 · 김종희</span>
-            <span className="text-xs">의 아들</span>
+            <span className="text-xs">의 차남</span>
             <span className="font-medium text-gray-700">봉구</span>
           </div>
           <div className="flex items-center justify-center space-x-3">
             <span>이강준 · 유신자</span>
-            <span className="text-xs">의 딸</span>
+            <span className="text-xs">의 차녀</span>
             <span className="font-medium text-gray-700">수정</span>
           </div>
         </div>
@@ -197,15 +197,15 @@ const GallerySection = () => {
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<number>>(new Set());
 
   const images = [
-    "./images/025.jpg",
-    "./images/024.jpg",
-    "./images/023.jpg",
     "./images/022.jpg",
-    "./images/019.jpg",
-    "./images/018.jpg",
-    "./images/017.jpg",
-    "./images/015.jpg",
-    "./images/014.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
+    "./images/022.jpg",
   ];
 
   // 이미지 프리로드 함수
