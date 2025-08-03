@@ -271,7 +271,6 @@ const GallerySection = () => {
           e.preventDefault();
         }
       };
-      // gesturestart는 iOS Safari 한정, 타입 무시
       const gestureStart = (e: Event) => e.preventDefault();
 
       document.body.addEventListener('touchmove', preventDefault, { passive: false });
