@@ -91,13 +91,10 @@ const MusicController = forwardRef((_props: any, ref) => {
     </button>
   );
 });
-
-// 메인 히어로 섹션 - 리디자인
 const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-
 
   // musicControllerRef의 상태 변화를 감지
   useEffect(() => {
@@ -105,7 +102,6 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
       if (musicControllerRef.current) {
         setIsPlaying(musicControllerRef.current.isPlaying);
         setProgress(musicControllerRef.current.progress || 0);
-
       }
     }, 100);
 
@@ -113,57 +109,67 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
   }, [musicControllerRef]);
 
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden bg-gradient-to-br from-rose-50 via-white to-rose-50">
-      {/* 상단 타이틀 */}
-
-      <div className="absolute top-safe left-0 right-0 text-center z-20 pt-4">
-        <h2 className="text-rose-400 text-base sm:text-lg font-light tracking-[0.2em] sm:tracking-[0.3em] opacity-80">
+    <section className="relative min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-white to-rose-50">
+      {/* 상단 타이틀 - 여백 증가 */}
+      <div className="relative text-center pt-8 pb-2">
+        <h2 className="text-rose-400 text-sm sm:text-base md:text-lg font-light tracking-[0.2em] sm:tracking-[0.3em] opacity-80">
           Wedding Player
         </h2>
       </div>
 
-      {/* 중앙 콘텐츠 */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-8">
-        <div className={`relative w-full max-w-[350px] sm:max-w-sm mt-12 sm:mt-0 transition-all duration-1500 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      {/* 중앙 콘텐츠 - 패딩 조정 */}
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8">
+        <div className={`relative w-full max-w-[320px] sm:max-w-[350px] md:max-w-sm transition-all duration-1500 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
           {/* 메인 이미지 카드 */}
-          <div className="relative bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
-            <div className="aspect-[3/4] relative">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden">
+            <div className="relative" style={{ aspectRatio: '3/4' }}>
+              {/* 배경색 추가로 여백 방지 */}
+              <div className="absolute inset-0 bg-gray-100" />
+
               <img
                 src="./images/013.jpg"
                 alt="Wedding"
-                className="w-full h-full object-cover object-[60%] scale-110"
+                className="absolute inset-0 w-full h-full object-cover object-[60%_50%]"
+                style={{ transform: 'scale(1.1)' }}
                 onLoad={() => setImageLoaded(true)}
-                loading="eager" // 히어로 이미지는 즉시 로드
+                loading="eager"
               />
-              {/* 그라데이션 오버레이 */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-            </div>
 
-            {/* 하단 정보 */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <div className="flex items-center justify-between mb-4">
+              {/* 그라데이션 오버레이 */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
+
+              {/* 하단 정보 */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 text-white">
                 <div>
-                  <h1 className="text-3xl font-light mb-2">
-                    봉구 <span className="text-red-400 mx-2">♥</span> 수정
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-light mb-1">
+                    봉구 <span className="text-red-400 mx-1">♥</span> 수정
                   </h1>
-                  <p className="text-white/80 text-sm">2025.12.13 SAT PM 12:40</p>
-                  <p className="text-white/80 text-sm">웨딩시그니처 4층 아너스홀</p>
+                  <p className="text-white/90 text-[11px] sm:text-xs md:text-sm">
+                    2025.12.13 SAT PM 12:40
+                  </p>
+                  <p className="text-white/90 text-[11px] sm:text-xs md:text-sm">
+                    웨딩시그니처 4층 아너스홀
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* 뮤직 플레이어 UI */}
-          <div className="mt-8 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mt-4 sm:mt-6 md:mt-8 bg-white/80 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 md:p-6">
+            <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-4">
               <div className="flex-1">
-                <p className="text-gray-800 font-medium">Our Wedding Day</p>
-                <p className="text-gray-500 text-xs">BONGGU, SOOJUNG</p>
+                <p className="text-gray-800 font-medium text-xs sm:text-sm md:text-base">
+                  Our Wedding Day
+                </p>
+                <p className="text-gray-500 text-[10px] sm:text-xs">
+                  BONGGU, SOOJUNG
+                </p>
               </div>
             </div>
 
             {/* 프로그레스 바 */}
-            <div className="relative h-1 bg-gray-200 rounded-full mb-4 overflow-hidden">
+            <div className="relative h-1 bg-gray-200 rounded-full mb-2 sm:mb-3 md:mb-4 overflow-hidden">
               <div
                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-rose-400 to-pink-400 rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
@@ -171,22 +177,22 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
             </div>
 
             {/* 컨트롤 버튼 */}
-            <div className="flex items-center justify-center gap-6">
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                <SkipBack className="w-5 h-5" />
+            <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6">
+              <button className="text-gray-400 hover:text-gray-600 transition-colors p-1">
+                <SkipBack className="w-3.5 sm:w-4 md:w-5 h-3.5 sm:h-4 md:h-5" />
               </button>
               <button
                 onClick={() => musicControllerRef.current?.toggleMusic()}
-                className="w-14 h-14 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 {isPlaying ? (
-                  <Pause className="w-6 h-6 text-white ml-0.5" />
+                  <Pause className="w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 text-white" />
                 ) : (
-                  <Play className="w-6 h-6 text-white ml-0.5" />
+                  <Play className="w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 text-white ml-0.5" />
                 )}
               </button>
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                <SkipForward className="w-5 h-5" />
+              <button className="text-gray-400 hover:text-gray-600 transition-colors p-1">
+                <SkipForward className="w-3.5 sm:w-4 md:w-5 h-3.5 sm:h-4 md:h-5" />
               </button>
             </div>
           </div>
@@ -194,8 +200,8 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
       </div>
 
       {/* 스크롤 인디케이터 */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <ChevronDown className="w-5 h-5 text-rose-300 animate-bounce" />
+      <div className="relative py-3 sm:py-4 md:py-6">
+        <ChevronDown className="w-4 sm:w-5 h-4 sm:h-5 mx-auto text-rose-300 animate-bounce" />
       </div>
     </section>
   );
@@ -215,7 +221,6 @@ const GreetingSection = () => {
             한 가정을 이루려 합니다<br />
             소박하지만 따듯한 시작에<br />
             함께해 주시면 감사하겠습니다<br />
-            키우고자 합니다.
           </p>
         </div>
 
@@ -598,13 +603,12 @@ const LocationSection = () => {
             </p>
           </div>
         </div>
-
         <div className="flex gap-3 mt-6">
           <a
             href="https://naver.me/xFLuQhhM"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-green-500 text-white py-3.5 rounded-xl font-medium hover:bg-green-600 transition-colors text-center text-sm"
+            className="flex-1 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-600 py-3.5 rounded-xl font-medium hover:from-rose-100 hover:to-pink-100 transition-all text-center text-sm"
           >
             네이버 지도
           </a>
@@ -612,13 +616,13 @@ const LocationSection = () => {
             href="https://kko.kakao.com/UYLNMIMBsX"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-yellow-400 text-gray-800 py-3.5 rounded-xl font-medium hover:bg-yellow-500 transition-colors text-center text-sm"
+            className="flex-1 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 text-rose-600 py-3.5 rounded-xl font-medium hover:from-rose-100 hover:to-pink-100 transition-all text-center text-sm"
           >
             카카오맵
           </a>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
@@ -702,7 +706,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신랑 이봉구</p>
-                    <p className="text-gray-700">국민은행 {신랑계좌번호}</p>
+                    <p className="text-gray-700 text-xs">국민은행 {신랑계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신랑계좌번호, 'groom1')}
@@ -714,7 +718,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신랑 아버지 이성화</p>
-                    <p className="text-gray-700">국민은행 {신랑아버지계좌번호}</p>
+                    <p className="text-gray-700 text-xs">국민은행 {신랑아버지계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신랑아버지계좌번호, 'groom2')}
@@ -726,7 +730,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신랑 어머니 김종희</p>
-                    <p className="text-gray-700">국민은행 {신랑어머니계좌번호}</p>
+                    <p className="text-gray-700 text-xs">국민은행 {신랑어머니계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신랑어머니계좌번호, 'groom3')}
@@ -751,7 +755,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신부 이수정</p>
-                    <p className="text-gray-700">우리은행 {신부계좌번호}</p>
+                    <p className="text-gray-700 text-xs">우리은행 {신부계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신부계좌번호, 'bride1')}
@@ -763,7 +767,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신부 아버지 이강준</p>
-                    <p className="text-gray-700">우리은행 {신부아버지계좌번호}</p>
+                    <p className="text-gray-700 text-xs">우리은행 {신부아버지계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신부아버지계좌번호, 'bride2')}
@@ -775,7 +779,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신부 어머니 유신자</p>
-                    <p className="text-gray-700">우리은행 {신부어머니계좌번호}</p>
+                    <p className="text-gray-700 text-xs">우리은행 {신부어머니계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신부어머니계좌번호, 'bride3')}
@@ -889,6 +893,19 @@ export default function WeddingInvitation() {
         
         h1, h2, h3 {
           font-family: 'Noto Serif KR', serif;
+          font-weight: 300;
+        }
+
+        /* 본문용 - 산세리프체 */
+        body {
+          font-family: 'Spoqa Han Sans Neo', 'Pretendard', sans-serif;
+          font-weight: 400;
+        }
+
+        /* 강조용 */
+        .emphasis {
+          font-family: 'GmarketSans', sans-serif;
+          font-weight: 500;
         }
 
         @keyframes fadeIn {
