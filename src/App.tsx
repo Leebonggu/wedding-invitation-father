@@ -4,6 +4,7 @@ import { LightboxPortal } from './shared/LightboxPortal';
 import { CSSFireworks } from './shared/CSSFireworks';
 import { SectionTitle } from './shared/SectionTitle';
 import { MusicController } from './shared/MusicController';
+import PhysicalInvitationPreview from './shared/Physics';
 
 
 
@@ -42,7 +43,7 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
               <div className="absolute inset-0 bg-gray-100" />
 
               <img
-                src="./images/013.jpg"
+                src="./images/main.jpg"
                 alt="Wedding"
                 className="absolute inset-0 w-full h-full object-cover object-[60%_50%]"
                 style={{ transform: 'scale(1.1)' }}
@@ -197,15 +198,21 @@ const GallerySection = () => {
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<number>>(new Set());
 
   const images = [
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
-    "./images/022.jpg",
+    "./images/001.jpg",
+    "./images/002.jpg",
+    "./images/003.jpg",
+    "./images/004.jpg",
+    "./images/005.jpg",
+    "./images/006.jpg",
+    "./images/007.jpg",
+    "./images/008.jpg",
+    "./images/009.jpg",
+    "./images/010.jpg",
+    "./images/011.jpg",
+    "./images/012.jpg",
+    "./images/013.jpg",
+    "./images/014.jpg",
+    "./images/015.jpg"
   ];
 
   // 이미지 프리로드 함수
@@ -567,7 +574,7 @@ const LocationSection = () => {
                   <li>제3주차장: 서교빌딩</li>
                 </ul>
                 <p className="text-xs text-gray-500 pt-2">
-                  ※ 당일 모든 주차는 <span className="font-semibold">주차 요원 안내</span>를 받아주세요.
+                  ※ 당일 주차는 <span className="font-semibold">주차 요원의 안내</span>를 받아주세요.
                 </p>
               </div>
             </div>
@@ -786,7 +793,7 @@ const NoticeSection = () => {
             </div>
             <div className="flex-1">
               <h3 className="font-medium text-gray-800 mb-2">식사안내</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 text-xs leading-relaxed">
                 식사는 4층 연회장에서 뷔페로 진행되며<br />
                 이용시간은 12:10 ~ 14:10 입니다.
               </p>
@@ -798,7 +805,7 @@ const NoticeSection = () => {
             </div>
             <div className="flex-1">
               <h3 className="font-medium text-gray-800 mb-2">화환안내</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 text-xs leading-relaxed">
                 웨딩홀 규정에 따라<br />
                 화환은 건물 1층이 놓여집니다. <br />
                 축하해 주시는 마음만 감사히 받겠습니다.
@@ -930,6 +937,7 @@ export default function WeddingInvitation() {
         <ContactSection />
         <AccountSection />
         <NoticeSection />
+        <PhysicalInvitationPreview />
         <FooterSection />
       </div>
     </div>
