@@ -1,8 +1,8 @@
 
 export const CSSFireworks = () => {
-    return (
-        <div className="fireworks-container">
-            <style>{`
+  return (
+    <div className="fireworks-container">
+      <style>{`
         .fireworks-container {
           position: fixed;
           top: 0;
@@ -62,21 +62,21 @@ export const CSSFireworks = () => {
         }
       `}</style>
 
-            <div className="firework-burst">
-                {[...Array(8)].map((_, i) => (
-                    <div key={i} className="firework"></div>
-                ))}
-            </div>
-            <div className="firework-burst">
-                {[...Array(8)].map((_, i) => (
-                    <div key={i} className="firework"></div>
-                ))}
-            </div>
-            <div className="firework-burst">
-                {[...Array(8)].map((_, i) => (
-                    <div key={i} className="firework"></div>
-                ))}
-            </div>
-        </div>
-    );
+      <div className="firework-burst">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="firework"></div>
+        ))}
+      </div>
+      <div className="firework-burst">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="firework"></div>
+        ))}
+      </div>
+      <div className="firework-burst">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="firework"></div>
+        ))}
+      </div>
+    </div>
+  );
 };

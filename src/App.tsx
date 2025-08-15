@@ -4,7 +4,7 @@ import { LightboxPortal } from './shared/LightboxPortal';
 import { CSSFireworks } from './shared/CSSFireworks';
 import { SectionTitle } from './shared/SectionTitle';
 import { MusicController } from './shared/MusicController';
-import PhysicalInvitationSection from './shared/3d';
+import { PhysicalInvitationSection } from './shared/3d';
 
 
 
