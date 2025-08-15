@@ -4,7 +4,7 @@ import { LightboxPortal } from './shared/LightboxPortal';
 import { CSSFireworks } from './shared/CSSFireworks';
 import { SectionTitle } from './shared/SectionTitle';
 import { MusicController } from './shared/MusicController';
-import PhysicalInvitationPreview from './shared/Physics';
+import PhysicalInvitationSection from './shared/3d';
 
 
 
@@ -617,8 +617,8 @@ const ContactSection = () => {
     { role: '신부', name: '이수정', phone: '010-9905-9256' },
     { role: '신랑 아버지', name: '이성화', phone: '010-2701-6325' },
     { role: '신랑 어머니', name: '김종희', phone: '010-7925-6325' },
-    { role: '신부 아버지', name: '이강준', phone: '010-5555-6666' },
-    { role: '신부 어머니', name: '유신자', phone: '010-7777-8888' }
+    { role: '신부 아버지', name: '이강준', phone: '010-5266-9135' },
+    { role: '신부 어머니', name: '유신자', phone: '010-3689-9135' }
   ];
 
   return (
@@ -937,7 +937,7 @@ export default function WeddingInvitation() {
         <ContactSection />
         <AccountSection />
         <NoticeSection />
-        <PhysicalInvitationPreview />
+        <PhysicalInvitationSection />
         <FooterSection />
       </div>
     </div>
