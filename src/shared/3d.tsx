@@ -97,8 +97,8 @@ export const PhysicalInvitationSection = () => {
                 종이 청첩장 보기
               </h3>
               <p className="text-xs sm:text-sm text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                실제 발송된 청첩장을<br />
-                3D로 확인하실 수 있습니다
+                직접 전해드리지 못해 아쉬운 마음을<br />
+                디지털 청첩장으로 대신 전합니다
               </p>
 
               <button
