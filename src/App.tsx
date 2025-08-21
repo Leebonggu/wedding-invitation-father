@@ -158,9 +158,18 @@ const GreetingSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-8 bg-white relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-24 px-8 bg-white relative overflow-hidden"
+      style={{
+        backgroundImage: "url('./images/015.webp')", // 배경 사진
+        backgroundSize: "cover",                  // 화면 꽉 채우기
+        backgroundPosition: "center",             // 중앙 정렬
+      }}
+    >
+      {/* 은은한 오버레이 */}
+      <div className="absolute inset-0 bg-white/90" />
       {showFireworks && <CSSFireworks />}
-
       <div className="max-w-md mx-auto text-center relative z-10">
         <SectionTitle title="초대합니다" subtitle="INVITATION" className="mb-12" />
         <div className="text-gray-600 leading-loose space-y-8 font-light">
@@ -198,21 +207,20 @@ const GallerySection = () => {
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<number>>(new Set());
 
   const images = [
-    "./images/001.webp",
-    "./images/002.webp",
-    "./images/003.webp",
     "./images/004.webp",
-    "./images/005.webp",
+    "./images/001.webp",
+    "./images/003.webp",
+    "./images/002.webp",
     "./images/006.webp",
-    "./images/007.webp",
-    "./images/008.webp",
-    "./images/009.webp",
     "./images/010.webp",
-    "./images/011.webp",
-    "./images/012.webp",
+    "./images/007.webp",
+    // "./images/008.webp",
+    "./images/005.webp",
+    "./images/009.webp",
+    // "./images/012.webp",
     "./images/013.webp",
+    "./images/011.webp",
     "./images/014.webp",
-    "./images/015.webp"
   ];
 
 
