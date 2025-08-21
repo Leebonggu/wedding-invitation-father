@@ -186,7 +186,7 @@ export const PhysicalInvitationSection = () => {
                 {/* 청첩장 앞면 */}
                 <div className="card-face bg-white rounded-lg overflow-hidden shadow-2xl">
                   <img
-                    src="./images/3d-front.png"
+                    src="./images/3d-front.webp"
                     alt="청첩장 앞면"
                     className="w-full h-full object-cover"
                     draggable={false}
@@ -196,7 +196,7 @@ export const PhysicalInvitationSection = () => {
                 {/* 청첩장 뒷면 */}
                 <div className="card-face card-back bg-white rounded-lg overflow-hidden shadow-2xl">
                   <img
-                    src="./images/3d-back.png"
+                    src="./images/3d-back.webp"
                     alt="청첩장 뒷면"
                     className="w-full h-full object-cover"
                     draggable={false}

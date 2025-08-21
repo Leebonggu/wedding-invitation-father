@@ -43,7 +43,7 @@ const HeroSection = ({ musicControllerRef }: { musicControllerRef: any }) => {
               <div className="absolute inset-0 bg-gray-100" />
 
               <img
-                src="./images/main.jpg"
+                src="./images/main.webp"
                 alt="Wedding"
                 className="absolute inset-0 w-full h-full object-cover object-[60%_50%]"
                 style={{ transform: 'scale(1.1)' }}
@@ -198,22 +198,23 @@ const GallerySection = () => {
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<number>>(new Set());
 
   const images = [
-    "./images/001.jpg",
-    "./images/002.jpg",
-    "./images/003.jpg",
-    "./images/004.jpg",
-    "./images/005.jpg",
-    "./images/006.jpg",
-    "./images/007.jpg",
-    "./images/008.jpg",
-    "./images/009.jpg",
-    "./images/010.jpg",
-    "./images/011.jpg",
-    "./images/012.jpg",
-    "./images/013.jpg",
-    "./images/014.jpg",
-    "./images/015.jpg"
+    "./images/001.webp",
+    "./images/002.webp",
+    "./images/003.webp",
+    "./images/004.webp",
+    "./images/005.webp",
+    "./images/006.webp",
+    "./images/007.webp",
+    "./images/008.webp",
+    "./images/009.webp",
+    "./images/010.webp",
+    "./images/011.webp",
+    "./images/012.webp",
+    "./images/013.webp",
+    "./images/014.webp",
+    "./images/015.webp"
   ];
+
 
   // 이미지 프리로드 함수
   const preloadImage = (index: number) => {
@@ -657,7 +658,7 @@ const AccountSection = () => {
   };
 
   const 신랑계좌번호 = '645502-01-294223';
-  const 신랑아버지계좌번호 = ''
+  const 신랑아버지계좌번호 = '202-23-0344-541'
   const 신랑어머니계좌번호 = '';
   const 신부계좌번호 = '111-222-333444';
   const 신부아버지계좌번호 = '';
