@@ -772,7 +772,7 @@ const AccountSection = () => {
                 <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신부 이수정</p>
-                    <p className="text-gray-700 text-xs">우리은행 {신부계좌번호}</p>
+                    <p className="text-gray-700 text-xs">국민은행 {신부계좌번호}</p>
                   </div>
                   <button
                     onClick={() => copyToClipboard(신부계좌번호, 'bride1')}
