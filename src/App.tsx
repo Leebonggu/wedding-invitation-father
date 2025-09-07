@@ -228,24 +228,24 @@ const GallerySection = () => {
   // ];
 
   const images = [
-    './images/001.webp',
-    './images/002.webp',
-    './images/003.webp',
+    // './images/002.webp',
     './images/004.webp',
-    './images/005.webp',
-    './images/006.webp',
-    './images/007.webp',
-    './images/008.webp',
+    './images/001.webp',
+    './images/003.webp',
     './images/009.webp',
+    // './images/008.webp',
+    './images/005.webp',
+    './images/007.webp',
+    './images/006.webp',
     './images/010.webp',
     './images/011.webp',
     './images/012.webp',
     './images/013.webp',
     './images/014.webp',
-    './images/015.webp',
-    './images/016.webp',
-    './images/017.webp',
-    './images/018.webp',
+    // './images/015.webp',
+    // './images/016.webp',
+    // './images/017.webp',
+    // './images/018.webp',
   ];
 
 
@@ -691,11 +691,11 @@ const AccountSection = () => {
   };
 
   const 신랑계좌번호 = '645502-01-294223';
-  const 신랑아버지계좌번호 = '202-23-0344-541'
-  const 신랑어머니계좌번호 = '';
-  const 신부계좌번호 = '111-222-333444';
-  const 신부아버지계좌번호 = '';
-  const 신부어머니계좌번호 = '';
+  // const 신랑아버지계좌번호 = '202-23-0344-541'
+  // const 신랑어머니계좌번호 = '';
+  const 신부계좌번호 = '523203-04-019309';
+  // const 신부아버지계좌번호 = '';
+  // const 신부어머니계좌번호 = '';
 
 
   return (
@@ -732,7 +732,7 @@ const AccountSection = () => {
                     {copiedAccount === 'groom1' ? '복사됨' : '복사'}
                   </button>
                 </div>
-                <div className="flex items-center justify-between py-2">
+                {/* <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신랑 아버지 이성화</p>
                     <p className="text-gray-700 text-xs">국민은행 {신랑아버지계좌번호}</p>
@@ -743,8 +743,8 @@ const AccountSection = () => {
                   >
                     {copiedAccount === 'groom2' ? '복사됨' : '복사'}
                   </button>
-                </div>
-                <div className="flex items-center justify-between py-2">
+                </div> */}
+                {/* <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신랑 어머니 김종희</p>
                     <p className="text-gray-700 text-xs">국민은행 {신랑어머니계좌번호}</p>
@@ -755,7 +755,7 @@ const AccountSection = () => {
                   >
                     {copiedAccount === 'groom3' ? '복사됨' : '복사'}
                   </button>
-                </div>
+                </div> */}
               </div>
             )}
 
@@ -781,7 +781,7 @@ const AccountSection = () => {
                     {copiedAccount === 'bride1' ? '복사됨' : '복사'}
                   </button>
                 </div>
-                <div className="flex items-center justify-between py-2">
+                {/* <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신부 아버지 이강준</p>
                     <p className="text-gray-700 text-xs">우리은행 {신부아버지계좌번호}</p>
@@ -792,8 +792,8 @@ const AccountSection = () => {
                   >
                     {copiedAccount === 'bride2' ? '복사됨' : '복사'}
                   </button>
-                </div>
-                <div className="flex items-center justify-between py-2">
+                </div> */}
+                {/* <div className="flex items-center justify-between py-2">
                   <div className="text-sm">
                     <p className="text-gray-500 text-xs">신부 어머니 유신자</p>
                     <p className="text-gray-700 text-xs">우리은행 {신부어머니계좌번호}</p>
@@ -804,7 +804,7 @@ const AccountSection = () => {
                   >
                     {copiedAccount === 'bride3' ? '복사됨' : '복사'}
                   </button>
-                </div>
+                </div> */}
               </div>
             )}
           </div>
