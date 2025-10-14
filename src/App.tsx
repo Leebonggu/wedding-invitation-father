@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, } from 'react';
-import { Heart, Phone, ChevronDown, X, Music, ChevronRight, ChevronLeft, MapPin, Clock, Car, SkipBack, SkipForward, Pause, Play } from 'lucide-react';
+import { Heart, ChevronDown, X, Music, ChevronRight, ChevronLeft, MapPin, Clock, Car, SkipBack, SkipForward, Pause, Play } from 'lucide-react';
 import { LightboxPortal } from './shared/LightboxPortal';
 import { CSSFireworks } from './shared/CSSFireworks';
 import { SectionTitle } from './shared/SectionTitle';
@@ -644,40 +644,40 @@ const LocationSection = () => {
   );
 };
 
-// 연락처 섹션 - 색상 테마 적용
-const ContactSection = () => {
-  const contacts = [
-    { role: '신랑', name: '이봉구', phone: '010-5031-6317' },
-    { role: '신부', name: '이수정', phone: '010-9905-9256' },
-    { role: '신랑 아버지', name: '이성화', phone: '010-2701-6325' },
-    { role: '신랑 어머니', name: '김종희', phone: '010-7925-6325' },
-    { role: '신부 아버지', name: '이강준', phone: '010-5266-9135' },
-    { role: '신부 어머니', name: '유신자', phone: '010-3689-9135' }
-  ];
+// // 연락처 섹션 - 색상 테마 적용
+// const ContactSection = () => {
+//   const contacts = [
+//     { role: '신랑', name: '이봉구', phone: '010-5031-6317' },
+//     { role: '신부', name: '이수정', phone: '010-9905-9256' },
+//     { role: '신랑 아버지', name: '이성화', phone: '010-2701-6325' },
+//     { role: '신랑 어머니', name: '김종희', phone: '010-7925-6325' },
+//     { role: '신부 아버지', name: '이강준', phone: '010-5266-9135' },
+//     { role: '신부 어머니', name: '유신자', phone: '010-3689-9135' }
+//   ];
 
-  return (
-    <section className="py-24 bg-white">
-      <div className="max-w-md mx-auto px-8">
-        <SectionTitle title="연락처" subtitle="CONTACT" className="mb-12" />
-        <div className="grid grid-cols-2 gap-4">
-          {contacts.map((contact, idx) => (
-            <a
-              key={idx}
-              href={`tel:${contact.phone}`}
-              className="group p-6 text-center hover:bg-neutral-50 rounded-xl transition-colors"
-            >
-              <p className="text-xs text-gray-500 mb-1">{contact.role}</p>
-              <p className="font-medium text-gray-800 mb-3">{contact.name}</p>
-              <div className="inline-flex items-center justify-center w-10 h-10 bg-rose-50 group-hover:bg-rose-100 rounded-full transition-colors">
-                <Phone className="w-4 h-4 text-rose-400" />
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+//   return (
+//     <section className="py-24 bg-white">
+//       <div className="max-w-md mx-auto px-8">
+//         <SectionTitle title="연락처" subtitle="CONTACT" className="mb-12" />
+//         <div className="grid grid-cols-2 gap-4">
+//           {contacts.map((contact, idx) => (
+//             <a
+//               key={idx}
+//               href={`tel:${contact.phone}`}
+//               className="group p-6 text-center hover:bg-neutral-50 rounded-xl transition-colors"
+//             >
+//               <p className="text-xs text-gray-500 mb-1">{contact.role}</p>
+//               <p className="font-medium text-gray-800 mb-3">{contact.name}</p>
+//               <div className="inline-flex items-center justify-center w-10 h-10 bg-rose-50 group-hover:bg-rose-100 rounded-full transition-colors">
+//                 <Phone className="w-4 h-4 text-rose-400" />
+//               </div>
+//             </a>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
 
 // 마음 전하기 섹션 - 색상 테마 적용
 const AccountSection = () => {
